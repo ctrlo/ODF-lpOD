@@ -351,12 +351,12 @@ sub     debug
         {
         my $param       = shift // "";
         $param          = shift if $param eq lpod;
-        given ($param)
-                {
-                when (undef)            {}
-                when (TRUE || FALSE)    { $DEBUG = $_; }
-                default                 { alert "Wrong argument"; }
-                }
+        if (! defined $param)
+        {}
+        elsif ($param == TRUE || $param == FALSE)
+        { $DEBUG = $_; }
+        else
+        { alert "Wrong argument"; }
         return $DEBUG;
         }
 
@@ -365,7 +365,7 @@ sub     is_true
         my $arg = shift;
         return FALSE unless $arg;
         my $v = lc $arg;
-        return $v ~~ ["false", "off", "no"] ? FALSE : TRUE;
+        return $v eq "false" || $v eq "off" || $v eq "no" ? FALSE : TRUE;
         }
 
 sub     is_false
@@ -390,7 +390,7 @@ sub     odf_boolean
 sub     is_odf_datatype
         {
         my $type        = shift         or return undef;
-        return $type ~~ @DATA_TYPES ? TRUE : FALSE;
+        return grep($type eq $_, @DATA_TYPES) ? TRUE : FALSE;
         }
 
 sub     check_odf_value
