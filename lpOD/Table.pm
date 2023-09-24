@@ -45,7 +45,7 @@ sub     set_group
                 {
                 alert "Grouping not allowed"; return FALSE;
                 }
-        my $tag = ($type ~~ ['column', 'row']) ?
+        my $tag = ($type eq 'column' || $type eq 'row') ?
                         'table:table-' . $type . '-group'       :
                         'table:table-' . $type;
         my $group = ODF::lpOD::Element->create($tag);
