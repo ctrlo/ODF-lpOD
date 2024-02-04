@@ -2313,6 +2313,8 @@ sub     not_allowed
         return undef;
         }
 
+sub DESTROY {}
+
 #=============================================================================
 package ODF::lpOD::TextNode;
 use base 'ODF::lpOD::Element';
