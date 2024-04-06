@@ -2313,7 +2313,9 @@ sub     not_allowed
         return undef;
         }
 
-sub DESTROY {}
+# Avoid "Unknown method DESTROY" warnings from AUTOLOAD, which gets called
+# when objects are being deleted.
+sub DESTROY {}  # https://rt.cpan.org/Public/Bug/Display.html?id=97977
 
 #=============================================================================
 package ODF::lpOD::TextNode;
