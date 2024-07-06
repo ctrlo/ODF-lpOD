@@ -122,7 +122,7 @@ WriteMakefile
                 },
         'EXE_FILES'         =>
                 [
-                'lpod_test'
+                'bin/lpod_test'
                 ]
         );
 
